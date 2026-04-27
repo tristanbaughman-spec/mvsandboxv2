@@ -227,3 +227,56 @@ st.dataframe(filtered_df, use_container_width=True)
 
 csv = filtered_df.to_csv(index=False).encode("utf-8")
 st.download_button("Download filtered raw data as CSV", csv, "filtered_mv360_data.csv", "text/csv")
+ import streamlit as st
+from pathlib import Path
+from PIL import Image
+import pandas as pd
+import re
+
+# Folder where images will be saved
+IMAGE_DIR = Path("sample_images")
+IMAGE_DIR.mkdir(exist_ok=True)
+
+def safe_filename(name):
+    return re.sub(r"[^a-zA-Z0-9_.-]", "_", name)
+
+st.title("Sample Image Upload")
+
+# Example unit/sample selector
+sample_id = st.text_input("Sample ID", value="Sample_001")
+unit_id = st.text_input("Unit ID", value="Unit_0001")
+
+uploaded_images = st.file_uploader(
+    "Upload image(s) for this unit",
+    type=["jpg", "jpeg", "png", "webp"],
+    accept_multiple_files=True
+)
+
+saved_paths = []
+
+if uploaded_images:
+    unit_folder = IMAGE_DIR / safe_filename(sample_id) / safe_filename(unit_id)
+    unit_folder.mkdir(parents=True, exist_ok=True)
+
+    for img_file in uploaded_images:
+        file_path = unit_folder / safe_filename(img_file.name)
+
+        with open(file_path, "wb") as f:
+            f.write(img_file.getbuffer())
+
+        saved_paths.append(str(file_path))
+
+        image = Image.open(img_file)
+        st.image(image, caption=f"{unit_id} - {img_file.name}", use_container_width=True)
+
+    st.success(f"Saved {len(saved_paths)} image(s).")
+
+    # Example metadata table
+    image_log = pd.DataFrame({
+        "Sample ID": [sample_id] * len(saved_paths),
+        "Unit ID": [unit_id] * len(saved_paths),
+        "Image Path": saved_paths
+    })
+
+    st.dataframe(image_log)
+    
