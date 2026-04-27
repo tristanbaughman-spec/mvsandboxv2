@@ -369,6 +369,48 @@ if unit_ids_with_images:
         st.write(selected_row[display_cols])
 else:
     st.info("No matched unit images available.")
+    st.subheader("View Images by Classification")
+
+classes_with_images = sorted(
+    filtered_df.loc[filtered_df["Has Image"], "Class"].dropna().unique()
+)
+
+if classes_with_images:
+    selected_class_for_images = st.selectbox(
+        "Select classification",
+        classes_with_images,
+        key="classification_image_viewer",
+    )
+
+    class_image_df = filtered_df[
+        (filtered_df["Class"] == selected_class_for_images) &
+        (filtered_df["Has Image"])
+    ].copy()
+
+    st.write(f"Showing {len(class_image_df)} image(s) for **{selected_class_for_images}**")
+
+    cols_per_row = st.slider(
+        "Images per row",
+        min_value=2,
+        max_value=6,
+        value=4,
+        key="images_per_row_slider",
+    )
+
+    rows = class_image_df.to_dict("records")
+
+    for i in range(0, len(rows), cols_per_row):
+        cols = st.columns(cols_per_row)
+
+        for col, row in zip(cols, rows[i:i + cols_per_row]):
+            with col:
+                st.image(
+                    row["Image Path"],
+                    caption=f"Unit {row['Unit ID']} | {row['Class']} | {row['Weight']:.4f} g",
+                    use_container_width=True,
+                )
+else:
+    st.info("No classified unit images available.")
 
 st.subheader("Raw Disaggregated Unit Data")
 st.dataframe(filtered_df, use_container_width=True)
