@@ -19,7 +19,7 @@ html, body, [class*="css"] {
 }
 
 .stApp {
-    background-color: #ffffff;
+    background-color: #de5307;
 }
 
 h1, h2, h3, h4 {
