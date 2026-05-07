@@ -236,7 +236,7 @@ txt_file = st.sidebar.file_uploader("MV360 TXT report", type=["txt"])
 
 image_files = st.sidebar.file_uploader(
     "Unit images",
-    type=["jpg", "jpeg", "png", "webp"],
+    type=["jpg", "jpeg", "png", "webp", "bmp"],
     accept_multiple_files=True,
 )
 
