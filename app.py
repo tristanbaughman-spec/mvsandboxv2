@@ -308,6 +308,7 @@ USDA_GRADE_RULES = {
         ],
     },
     "U.S. Extra No. 1": {
+        "limits": {
         "Doubles": 5.00,
         "Chip & Scratch (6.4mm)": 10.00,
         "Foreign Material": 0.05,
@@ -317,6 +318,7 @@ USDA_GRADE_RULES = {
         "Serious Defects": 1.50,
     },
     "U.S. No. 1": {
+        "limits": {
         "Doubles": 15.00,
         "Chip & Scratch (6.4mm)": 20.00,
         "Foreign Material": 0.10,
@@ -326,6 +328,7 @@ USDA_GRADE_RULES = {
         "Serious Defects": 2.00,
     },
     "U.S. Select Sheller Run": {
+        "limits": {
         "Foreign Material": 0.20,
         "Particles & Dust": 1.00,
         "Split & Broken": 15.00,
@@ -333,6 +336,7 @@ USDA_GRADE_RULES = {
         "Serious Defects": 3.00,
     },
     "U.S. Standard Sheller Run": {
+        "limits": {
         "Foreign Material": 0.20,
         "Particles & Dust": 5.00,
         "Split & Broken": 20.00,
@@ -354,7 +358,7 @@ def calculate_usda_grade(summary_df):
     for grade, rules in USDA_GRADE_RULES.items():
         failed_items = []
 
-        for bucket, max_allowed in rules.items():
+        for bucket, max_allowed in rules.get("limits", {}).items():
             actual = bucket_percents.get(bucket, 0)
 
             if actual > max_allowed:
@@ -362,14 +366,24 @@ def calculate_usda_grade(summary_df):
                     f"{bucket}: {actual:.2f}% / max {max_allowed:.2f}%"
                 )
 
+        for combined_rule in rules.get("combined_limits", []):
+            combined_actual = sum(
+                bucket_percents.get(bucket, 0)
+                for bucket in combined_rule["buckets"]
+            )
+
+            if combined_actual > combined_rule["max"]:
+                failed_items.append(
+                    f"{combined_rule['name']}: {combined_actual:.2f}% / max {combined_rule['max']:.2f}%"
+                )
+
         results.append({
             "Grade": grade,
             "Meets Grade": len(failed_items) == 0,
-            "Reason": "Pass" if not failed_items else "; ".join(failed_items)
+            "Reason": "Pass" if not failed_items else "; ".join(failed_items),
         })
 
     passing_grades = [r["Grade"] for r in results if r["Meets Grade"]]
-
     best_grade = passing_grades[0] if passing_grades else "Does not meet listed USDA grades"
 
     return best_grade, pd.DataFrame(results)
