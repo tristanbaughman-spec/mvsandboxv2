@@ -445,9 +445,38 @@ best_grade, grade_results_df = calculate_usda_grade(filtered_summary)
 st.subheader("USDA Grade Result")
 
 if best_grade == "Does not meet listed USDA grades":
-    st.error(best_grade)
+
+    st.markdown(
+        f"""
+        <div style="
+            font-size: 36px;
+            font-weight: 800;
+            color: red;
+            text-align: center;
+            padding: 15px;
+        ">
+            {best_grade}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
 else:
-    st.success(f"Sample meets: {best_grade}")
+
+    st.markdown(
+        f"""
+        <div style="
+            font-size: 42px;
+            font-weight: 900;
+            color: #de5307;
+            text-align: center;
+            padding: 15px;
+        ">
+            Sample meets: {best_grade}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 st.dataframe(grade_results_df.astype(str), use_container_width=True)
 
