@@ -505,7 +505,7 @@ if feature_options:
     st.plotly_chart(fig3, use_container_width=True)
 
 st.subheader("Class Summary")
-st.dataframe(filtered_summary, use_container_width=True)
+st.dataframe(filtered_summary.astype(str), use_container_width=True)
 
 st.subheader("Unit Data with Images")
 
@@ -549,7 +549,7 @@ if unit_ids_with_images:
 
     with col_data:
         st.write("### Unit Details")
-        st.write(selected_row[display_cols])
+        st.dataframe(selected_row[display_cols].astype(str), use_container_width=True)
 else:
     st.info("No matched unit images available.")
 
