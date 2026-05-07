@@ -28,7 +28,7 @@ h1, h2, h3, h4 {
 }
 
 p, span, label, div {
-    color: #4f5358;
+    color: #e0e0e0;
 }
 
 section[data-testid="stSidebar"] {
