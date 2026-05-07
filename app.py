@@ -72,14 +72,14 @@ st.markdown("""
 
 
 CLASS_MAP = {
-    "Hull": "FM",
-    "sticktite": "FM",
-    "Rock": "FM",
-    "sap": "FM",
-    "glass": "FM",
-    "Shell-L": "FM",
-    "InShell": "FM",
-    "pit": "FM",
+    "Hull": "Foreign Material",
+    "sticktite": "Foreign Material",
+    "Rock": "Foreign Material",
+    "sap": "Foreign Material",
+    "glass": "Foreign Material",
+    "Shell-L": "Foreign Material",
+    "InShell": "Foreign Material",
+    "pit": "Foreign Material",
     "gummy": "Other Defects",
     "Shrvl": "Other Defects",
     "Embedd": "Other Defects",
@@ -87,7 +87,7 @@ CLASS_MAP = {
     "Dbl": "Doubles",
     "CyS_L": "Chip & Scratch (6.4mm)",
     "CyS_S": "Chip & Scratch (3.2-6.4mm)",
-    "FM": "FM",
+    "FM": "Foreign Material",
     "brk": "Split & Broken",
     "Broken": "Split & Broken",
     "Split": "Split & Broken",
@@ -286,6 +286,82 @@ if show_only_with_images:
     filtered_df = filtered_df[filtered_df["Has Image"]]
 
 filtered_summary = make_class_summary(filtered_df)
+USDA_GRADE_RULES = {
+    "U.S. Fancy": {
+        "Doubles": 3.00,
+        "Chip & Scratch (6.4mm)": 5.00,
+        "Foreign Material": 0.05,
+        "Particles & Dust": 0.10,
+        "Split & Broken": 1.00,
+        "Other Defects": 2.00,
+        "Serious Defects": 1.00,
+    },
+    "U.S. Extra No. 1": {
+        "Doubles": 5.00,
+        "Chip & Scratch (6.4mm)": 10.00,
+        "Foreign Material": 0.05,
+        "Particles & Dust": 0.10,
+        "Split & Broken": 1.00,
+        "Other Defects": 4.00,
+        "Serious Defects": 1.50,
+    },
+    "U.S. No. 1": {
+        "Doubles": 15.00,
+        "Chip & Scratch (6.4mm)": 20.00,
+        "Foreign Material": 0.10,
+        "Particles & Dust": 0.20,
+        "Split & Broken": 5.00,
+        "Other Defects": 5.00,
+        "Serious Defects": 2.00,
+    },
+    "U.S. Select Sheller Run": {
+        "Foreign Material": 0.20,
+        "Particles & Dust": 1.00,
+        "Split & Broken": 15.00,
+        "Other Defects": 10.00,
+        "Serious Defects": 3.00,
+    },
+    "U.S. Standard Sheller Run": {
+        "Foreign Material": 0.20,
+        "Particles & Dust": 5.00,
+        "Split & Broken": 20.00,
+        "Other Defects": 15.00,
+        "Serious Defects": 5.00,
+    },
+}
+
+
+def calculate_usda_grade(summary_df):
+    bucket_percents = (
+        summary_df.groupby("USDA Bucket")["Weight %"]
+        .sum()
+        .to_dict()
+    )
+
+    results = []
+
+    for grade, rules in USDA_GRADE_RULES.items():
+        failed_items = []
+
+        for bucket, max_allowed in rules.items():
+            actual = bucket_percents.get(bucket, 0)
+
+            if actual > max_allowed:
+                failed_items.append(
+                    f"{bucket}: {actual:.2f}% / max {max_allowed:.2f}%"
+                )
+
+        results.append({
+            "Grade": grade,
+            "Meets Grade": len(failed_items) == 0,
+            "Reason": "Pass" if not failed_items else "; ".join(failed_items)
+        })
+
+    passing_grades = [r["Grade"] for r in results if r["Meets Grade"]]
+
+    best_grade = passing_grades[0] if passing_grades else "Does not meet listed USDA grades"
+
+    return best_grade, pd.DataFrame(results)
 
 batch = metadata.get(
     "Batch",
@@ -332,6 +408,16 @@ c3.metric("Accept Group Weight", f"{accept_weight:,.2f} g")
 c4.metric("Reject / Defect Weight", f"{reject_weight:,.2f} g")
 c5.metric("Accept Group %", f"{accept_pct:.2f}%")
 c6.metric("Images Matched", f"{int(units_df['Has Image'].sum()):,}")
+best_grade, grade_results_df = calculate_usda_grade(filtered_summary)
+
+st.subheader("USDA Grade Result")
+
+if best_grade == "Does not meet listed USDA grades":
+    st.error(best_grade)
+else:
+    st.success(f"Sample meets: {best_grade}")
+
+st.dataframe(grade_results_df, use_container_width=True)
 
 left, right = st.columns(2)
 
