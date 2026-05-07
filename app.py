@@ -307,7 +307,6 @@ USDA_GRADE_RULES = {
             }
         ],
     },
-},
     "U.S. Extra No. 1": {
         "Doubles": 5.00,
         "Chip & Scratch (6.4mm)": 10.00,
