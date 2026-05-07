@@ -449,7 +449,7 @@ if best_grade == "Does not meet listed USDA grades":
 else:
     st.success(f"Sample meets: {best_grade}")
 
-st.dataframe(grade_results_df, use_container_width=True)
+st.dataframe(grade_results_df.astype(str), use_container_width=True)
 
 left, right = st.columns(2)
 
@@ -526,7 +526,7 @@ display_cols = [
     if c in filtered_df.columns
 ]
 
-st.dataframe(filtered_df[display_cols], use_container_width=True)
+st.dataframe(filtered_df[display_cols].astype(str), use_container_width=True)
 
 st.subheader("Unit Image Viewer")
 
@@ -598,7 +598,7 @@ else:
     st.info("No classified unit images available.")
 
 st.subheader("Raw Disaggregated Unit Data")
-st.dataframe(filtered_df, use_container_width=True)
+st.dataframe(filtered_df.astype(str), use_container_width=True)
 
 csv = filtered_df.to_csv(index=False).encode("utf-8")
 
