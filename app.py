@@ -72,6 +72,17 @@ st.markdown("""
 
 
 CLASS_MAP = {
+    "Hull": "FM",
+    "sticktite": "FM",
+    "Rock": "FM",
+    "sap": "FM",
+    "glass": "FM",
+    "Shell-L": "FM",
+    "InShell": "FM",
+    "pit": "FM",
+    "gummy": "Other Defects",
+    "Shrvl": "Other Defects",
+    "Embedd": "Other Defects",
     "Accept": "Accept (perfect kernel)",
     "Dbl": "Doubles",
     "CyS_L": "Chip & Scratch (6.4mm)",
