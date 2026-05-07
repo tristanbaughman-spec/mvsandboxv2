@@ -288,13 +288,26 @@ if show_only_with_images:
 filtered_summary = make_class_summary(filtered_df)
 USDA_GRADE_RULES = {
     "U.S. Fancy": {
-        "Doubles": 3.00,
-        "Chip & Scratch (6.4mm)": 5.00,
-        "Foreign Material": 0.05,
-        "Particles & Dust": 0.10,
-        "Split & Broken": 1.00,
-        "Other Defects": 2.00,
-        "Serious Defects": 1.00,
+        "limits": {
+            "Doubles": 3.00,
+            "Foreign Material": 0.05,
+            "Particles & Dust": 0.10,
+            "Split & Broken": 1.00,
+            "Other Defects": 2.00,
+            "Serious Defects": 1.00,
+        },
+        "combined_limits": [
+            {
+                "name": "Chip and Scratch",
+                "buckets": [
+                    "Chip & Scratch (6.4mm)",
+                    "Chip & Scratch (3.2-6.4mm)",
+                ],
+                "max": 5.00,
+            }
+        ],
+    },
+}
     },
     "U.S. Extra No. 1": {
         "Doubles": 5.00,
