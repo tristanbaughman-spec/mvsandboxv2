@@ -309,39 +309,43 @@ USDA_GRADE_RULES = {
     },
     "U.S. Extra No. 1": {
         "limits": {
-        "Doubles": 5.00,
-        "Chip & Scratch (6.4mm)": 10.00,
-        "Foreign Material": 0.05,
-        "Particles & Dust": 0.10,
-        "Split & Broken": 1.00,
-        "Other Defects": 4.00,
-        "Serious Defects": 1.50,
+            "Doubles": 5.00,
+            "Chip & Scratch (6.4mm)": 10.00,
+            "Foreign Material": 0.05,
+            "Particles & Dust": 0.10,
+            "Split & Broken": 1.00,
+            "Other Defects": 4.00,
+            "Serious Defects": 1.50,
+        }
     },
     "U.S. No. 1": {
         "limits": {
-        "Doubles": 15.00,
-        "Chip & Scratch (6.4mm)": 20.00,
-        "Foreign Material": 0.10,
-        "Particles & Dust": 0.20,
-        "Split & Broken": 5.00,
-        "Other Defects": 5.00,
-        "Serious Defects": 2.00,
+            "Doubles": 15.00,
+            "Chip & Scratch (6.4mm)": 20.00,
+            "Foreign Material": 0.10,
+            "Particles & Dust": 0.20,
+            "Split & Broken": 5.00,
+            "Other Defects": 5.00,
+            "Serious Defects": 2.00,
+        }
     },
     "U.S. Select Sheller Run": {
         "limits": {
-        "Foreign Material": 0.20,
-        "Particles & Dust": 1.00,
-        "Split & Broken": 15.00,
-        "Other Defects": 10.00,
-        "Serious Defects": 3.00,
+            "Foreign Material": 0.20,
+            "Particles & Dust": 1.00,
+            "Split & Broken": 15.00,
+            "Other Defects": 10.00,
+            "Serious Defects": 3.00,
+        }
     },
     "U.S. Standard Sheller Run": {
         "limits": {
-        "Foreign Material": 0.20,
-        "Particles & Dust": 5.00,
-        "Split & Broken": 20.00,
-        "Other Defects": 15.00,
-        "Serious Defects": 5.00,
+            "Foreign Material": 0.20,
+            "Particles & Dust": 5.00,
+            "Split & Broken": 20.00,
+            "Other Defects": 15.00,
+            "Serious Defects": 5.00,
+        }
     },
 }
 
