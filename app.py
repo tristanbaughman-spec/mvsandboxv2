@@ -98,7 +98,6 @@ CLASS_MAP = {
 
 ACCEPT_GROUPS = {
     "Accept (perfect kernel)",
-    "Chip & Scratch (6.4mm)",
     "Chip & Scratch (3.2-6.4mm)",
 }
 
