@@ -472,7 +472,7 @@ else:
             text-align: left;
             padding: 15px;
         ">
-            : {best_grade}
+             {best_grade}
         </div>
         """,
         unsafe_allow_html=True,
