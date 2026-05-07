@@ -469,10 +469,10 @@ else:
             font-size: 42px;
             font-weight: 900;
             color: #bcc244;
-            text-align: center;
+            text-align: left;
             padding: 15px;
         ">
-            Sample meets: {best_grade}
+            : {best_grade}
         </div>
         """,
         unsafe_allow_html=True,
