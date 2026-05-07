@@ -468,7 +468,7 @@ else:
         <div style="
             font-size: 42px;
             font-weight: 900;
-            color: #000000;
+            color: #bcc244;
             text-align: center;
             padding: 15px;
         ">
