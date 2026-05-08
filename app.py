@@ -13,7 +13,7 @@ with left:
     st.set_page_config(page_title="MV360 Analysis & QC Dashboard", layout="wide")
 
 with right:
-    st.image("assets/3U-Vision-Logo.png", width=200)
+    st.image("assets/3U-Vision-USAdarksilhouette.png", width=250)
 
 st.markdown("""
 <style>
