@@ -452,7 +452,7 @@ if best_grade == "Does not meet listed USDA grades":
         <div style="
             font-size: 36px;
             font-weight: 800;
-            color: red;
+            color: #000000;
             text-align: center;
             padding: 15px;
         ">
@@ -488,7 +488,7 @@ with left:
     fig = px.pie(
         filtered_summary,
         names="Class",
-        values="Weight_g",
+        values="Weight %",
         hole=0.10,
         color_discrete_sequence=px.colors.qualitative.Set2,
     )
