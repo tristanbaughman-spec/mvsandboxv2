@@ -7,7 +7,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-(st.image("assets/3U-Vision-USAdarksilhouette.png"),)
+st.image("assets/3U-Vision-USAdarksilhouette.png", width=150)
 
 st.set_page_config(page_title="MV360 Analysis & QC Dashboard", layout="wide")
 
