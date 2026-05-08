@@ -39,7 +39,7 @@ p, span, label, div {
 }
 
 section[data-testid="stSidebar"] {
-    background-color: #f5f6f7;
+    background-color: #4f5358;
 }
 
 .stButton > button,
