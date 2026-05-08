@@ -7,6 +7,8 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+st.set_page_config(layout="wide")
+
 title_col, logo_col = st.columns([5,1])
 
 with title_col:
