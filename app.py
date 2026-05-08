@@ -7,6 +7,9 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+name = input("Enter your name: ")
+print(f"Hello, {name}! Welcome to the MV360 & 3U USA Analysis
+
 st.set_page_config(layout="wide")
 
 title_col, logo_col = st.columns([5,1])
