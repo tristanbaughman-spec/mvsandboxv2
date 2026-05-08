@@ -68,8 +68,8 @@ thead tr th {
 """, unsafe_allow_html=True)
 
 st.markdown("""
-<h1 style="margin-bottom: 0;">MV360 Sorting / QC Dashboard</h1>
-<p style="margin-top: 4px;">Upload an MV360 TXT report and optional unit images.</p>
+<h1 style="margin-bottom: 0;">MV360 Analysis & QC Dashboard</h1>
+<p style="margin-top: 4px;">Please Upload an MV360 TXT report and optional unit images.</p>
 """, unsafe_allow_html=True)
 
 
