@@ -13,7 +13,7 @@ with title_col:
     st.title("MV360 & 3U USA Analysis Dashboard")
 
 with logo_col:
-    st.image("assets/3U-Vision-USAdarksilhouette.png", width=180)
+    st.image("assets/3U-Vision-USAdarksilhouette.png", width=200)
 
 st.markdown("""
 <style>
@@ -71,7 +71,6 @@ thead tr th {
 """, unsafe_allow_html=True)
 
 st.markdown("""
-<h1 style="margin-bottom: 0;">MV360 & 3U USA Analysis Dashboard</h1>
 <p style="margin-top: 4px;">Please Upload an MV360 TXT report and optional unit images.</p>
 """, unsafe_allow_html=True)
 
