@@ -13,7 +13,7 @@ title_col, logo_col = st.columns([5,1])
 
 with title_col:
     st.title("MV360 & 3U USA Analysis Dashboard")
-    
+     
 with logo_col:
     st.image("assets/3U-Vision-USAdarksilhouette.png", width=200)
 
@@ -512,6 +512,9 @@ with right:
     fig2.update_layout(xaxis_title="", yaxis_title="Weight (g)")
     st.plotly_chart(fig2, use_container_width=True)
 
+st.subheader("Class Summary")
+st.dataframe(filtered_summary.astype(str), use_container_width=True)
+
 st.subheader("Machine Vision Feature Distributions")
 
 feature_options = [
@@ -534,8 +537,6 @@ if feature_options:
     fig3 = px.histogram(filtered_df, x=feature, color="Class", nbins=40, marginal="box")
     st.plotly_chart(fig3, use_container_width=True)
 
-st.subheader("Class Summary")
-st.dataframe(filtered_summary.astype(str), use_container_width=True)
 
 st.subheader("Unit Data with Images")
 
