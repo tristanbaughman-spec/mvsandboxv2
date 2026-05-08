@@ -16,6 +16,7 @@ with title_col:
      
 with logo_col:
     st.image("assets/3U-Vision-USAdarksilhouette.png", width=200)
+    st.image("assets/Logotipo-MachVision-spanish-1.png", width=100)
 
 st.markdown("""
 <style>
