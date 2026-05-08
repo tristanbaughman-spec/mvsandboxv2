@@ -70,11 +70,6 @@ thead tr th {
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<p style="margin-top: 4px;">Please Upload an MV360 TXT report and optional unit images.</p>
-""", unsafe_allow_html=True)
-
-
 CLASS_MAP = {
     "Hull": "Foreign Material",
     "sticktite": "Foreign Material",
