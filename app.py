@@ -7,13 +7,13 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-left, right = st.columns(2)
+title_col, logo_col = st.columns([5,1])
 
-with left:
-    st.set_page_config(page_title="MV360 Analysis & QC Dashboard", layout="wide")
+with title_col:
+    st.title("MV360 3U USA Analysis Dashboard")
 
-with right:
-    st.image("assets/3U-Vision-USAdarksilhouette.png", width=250)
+with logo_col:
+    st.image("assets/3U-Vision-Logo.png", width=180)
 
 st.markdown("""
 <style>
@@ -71,7 +71,7 @@ thead tr th {
 """, unsafe_allow_html=True)
 
 st.markdown("""
-<h1 style="margin-bottom: 0;">MV360 Analysis & QC Dashboard</h1>
+<h1 style="margin-bottom: 0;">MV360 3U USA Analysis Dashboard</h1>
 <p style="margin-top: 4px;">Please Upload an MV360 TXT report and optional unit images.</p>
 """, unsafe_allow_html=True)
 
