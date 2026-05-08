@@ -13,10 +13,7 @@ title_col, logo_col = st.columns([5,1])
 
 with title_col:
     st.title("MV360 & 3U USA Analysis Dashboard")
-    name = st.text_input("Enter your name: ")
-if name:
-    st.write(f"Hello, {name}! Welcome to the MV360 & 3U USA Analysis")
-
+    
 with logo_col:
     st.image("assets/3U-Vision-USAdarksilhouette.png", width=200)
 
