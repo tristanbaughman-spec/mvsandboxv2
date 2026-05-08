@@ -60,7 +60,7 @@ section[data-testid="stSidebar"] {
 
 [data-testid="metric-container"] {
     background-color: #ffffff;
-    border: 1px solid #e6e6e6;
+    border: 2px solid #e6e6e6;
     padding: 15px;
     border-radius: 12px;
 }
