@@ -493,7 +493,7 @@ with left:
         filtered_summary,
         names="Class",
         values="Weight_g",
-        hole=0.35,
+        hole=0.10,
         color_discrete_sequence=px.colors.qualitative.Set2,
     )
     st.plotly_chart(fig, use_container_width=True)
