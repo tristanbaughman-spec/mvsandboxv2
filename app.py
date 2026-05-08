@@ -492,6 +492,10 @@ with left:
         hole=0.10,
         color_discrete_sequence=px.colors.qualitative.Set2,
     )
+
+    fig.update_traces(
+        textinfo="label+value",
+    )
     st.plotly_chart(fig, use_container_width=True)
 
 with right:
