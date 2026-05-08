@@ -7,10 +7,13 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-st.image("assets/3U-Vision-USAdarksilhouette.png", width=150)
+left, right = st.columns(2)
 
-st.set_page_config(page_title="MV360 Analysis & QC Dashboard", layout="wide")
+with left:
+    st.set_page_config(page_title="MV360 Analysis & QC Dashboard", layout="wide")
 
+with right:
+    st.image("assets/3U-Vision-Logo.png", width=200)
 
 st.markdown("""
 <style>
@@ -436,15 +439,15 @@ accept_pct = (
 
 c1, c2, c3, c4, c5, c6 = st.columns(6)
 
-c1.metric("Processed Units", f"{processed_units:,}")
-c2.metric("Estimated Weight", f"{est_weight:,.2f} g")
+c1.metric("Units Processed", f"{processed_units:,}")
+c2.metric("Estimated Sample Weight", f"{est_weight:,.2f} g")
 c3.metric("Accept Group Weight", f"{accept_weight:,.2f} g")
-c4.metric("Reject / Defect Weight", f"{reject_weight:,.2f} g")
+c4.metric("Reject Weight", f"{reject_weight:,.2f} g")
 c5.metric("Accept Group %", f"{accept_pct:.2f}%")
 c6.metric("Images Matched", f"{int(units_df['Has Image'].sum()):,}")
 best_grade, grade_results_df = calculate_usda_grade(filtered_summary)
 
-st.subheader("USDA Grade Result")
+st.subheader("USDA Grade Result:")
 
 if best_grade == "Does not meet listed USDA grades":
 
