@@ -494,7 +494,7 @@ with left:
     )
 
     fig.update_traces(
-        textinfo="label+value+percent",
+        textinfo="label+percent",
     )
     st.plotly_chart(fig, use_container_width=True)
 
