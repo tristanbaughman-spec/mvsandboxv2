@@ -76,6 +76,7 @@ thead tr th {
 CLASS_MAP = {
     "Hull": "Foreign Material",
     "sticktite": "Foreign Material",
+    "Stick": "Foreign Material",
     "Rock": "Foreign Material",
     "sap": "Foreign Material",
     "glass": "Foreign Material",
